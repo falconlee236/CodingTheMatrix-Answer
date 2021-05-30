@@ -1,7 +1,8 @@
 # Copyright 2013 Philip N. Klein
-from vec import Vec
+from .vec import Vec
+# Test your Mat class over R and also over GF(2).
+# The following tests use only R.
 
-#Test your Mat class over R and also over GF(2).  The following tests use only R.
 
 def getitem(M, k):
     """
@@ -13,7 +14,8 @@ def getitem(M, k):
     0
     """
     assert k[0] in M.D[0] and k[1] in M.D[1]
-    pass
+    return M.f[(k[0], k[1])] if k in M.f.keys() else 0
+
 
 def equal(A, B):
     """
@@ -39,7 +41,12 @@ def equal(A, B):
     True
     """
     assert A.D == B.D
-    pass
+    for i in A.D[0]:
+        for j in A.D[1]:
+            if getitem(A, set(i, j)) != getitem(B, set(i, j)):
+                return False
+    return True
+
 
 def setitem(M, k, val):
     """
@@ -59,7 +66,8 @@ def setitem(M, k, val):
     True
     """
     assert k[0] in M.D[0] and k[1] in M.D[1]
-    pass
+    M.f[(k[0], k[1])] = val
+
 
 def add(A, B):
     """

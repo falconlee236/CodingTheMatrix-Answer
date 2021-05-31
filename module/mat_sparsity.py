@@ -10,5 +10,11 @@
 '''
 
 if __name__ == "__main__":
+    '''
     import doctest
     doctest.testmod()
+    '''
+    from mat import Mat
+    zero = Mat(({3,6}, {'x','y'}), {})
+    B = Mat(({3, 6}, {'x','y'}), {(3,'x'):-2, (3,'y'):4, (6,'y'):3})
+    print(B + zero == B)

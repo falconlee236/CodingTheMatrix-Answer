@@ -1,5 +1,5 @@
 # Copyright 2013 Philip N. Klein
-from .vec import Vec
+from vec import Vec
 # Test your Mat class over R and also over GF(2).
 # The following tests use only R.
 
@@ -41,10 +41,12 @@ def equal(A, B):
     True
     """
     assert A.D == B.D
-    for i in A.D[0]:
-        for j in A.D[1]:
-            if getitem(A, set(i, j)) != getitem(B, set(i, j)):
-                return False
+    for key in A.f:
+        if getitem(A, key) != getitem(B, key):
+            return False
+    for key in B.f:
+        if getitem(A, key) != getitem(B, key):
+            return False
     return True
 
 
@@ -95,7 +97,13 @@ def add(A, B):
     True
     """
     assert A.D == B.D
-    pass
+    m = Mat(A.D, {})
+    for key, value in A.f.items():
+        setitem(m, key, value+getitem(m, key))
+    for key, value in B.f.items():
+        setitem(m, key, value+getitem(m, key))
+    return m
+
 
 def scalar_mul(M, x):
     """

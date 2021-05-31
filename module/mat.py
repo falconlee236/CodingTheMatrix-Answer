@@ -117,7 +117,8 @@ def scalar_mul(M, x):
     >>> 0.25*M == Mat(({1,3,5}, {2,4}), {(1,2):1.0, (5,4):0.5, (3,4):0.75})
     True
     """
-    pass
+    return Mat(M.D, {key: value*x for key, value in M.f.items()})
+
 
 def transpose(M):
     """
@@ -131,7 +132,8 @@ def transpose(M):
     >>> M.transpose() == Mt
     True
     """
-    pass
+    return Mat(M.D, {(key[1], key[0]): value for key, value in M.f.items()})
+
 
 def vector_matrix_mul(v, M):
     """

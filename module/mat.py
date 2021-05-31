@@ -162,6 +162,7 @@ def vector_matrix_mul(v, M):
     assert M.D[0] == v.D
     pass
 
+
 def matrix_vector_mul(M, v):
     """
     Returns the product of matrix M and vector v.

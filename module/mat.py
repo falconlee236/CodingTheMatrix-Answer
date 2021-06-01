@@ -224,8 +224,12 @@ def matrix_matrix_mul(A, B):
     True
     """
     assert A.D[1] == B.D[0]
-    pass
-
+    res = {(i, j): 0 for i in A.D[0] for j in B.D[1]}
+    for i, j in A.f:
+        for x, y in B.f:
+            if j == x:
+                res[i, y] += (A[i, j] * B[x, y])
+    return Mat((A.D[0], B.D[1]), res)
 ###############################################################################
 
 

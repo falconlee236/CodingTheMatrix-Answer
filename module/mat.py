@@ -42,10 +42,10 @@ def equal(A, B):
     """
     assert A.D == B.D
     for key in A.f:
-        if getitem(A, key) != getitem(B, key):
+        if A[key] != B[key]:
             return False
     for key in B.f:
-        if getitem(A, key) != getitem(B, key):
+        if A[key] != B[key]:
             return False
     return True
 
@@ -99,9 +99,9 @@ def add(A, B):
     assert A.D == B.D
     m = Mat(A.D, {})
     for key, value in A.f.items():
-        setitem(m, key, value+getitem(m, key))
+        m[key] += value
     for key, value in B.f.items():
-        setitem(m, key, value+getitem(m, key))
+        m[key] += value
     return m
 
 
@@ -132,7 +132,7 @@ def transpose(M):
     >>> M.transpose() == Mt
     True
     """
-    return Mat(M.D, {(key[1], key[0]): value for key, value in M.f.items()})
+    return Mat((M.D[1], M.D[0]), {(key[1], key[0]): value for key, value in M.f.items()})
 
 
 def vector_matrix_mul(v, M):
@@ -160,7 +160,10 @@ def vector_matrix_mul(v, M):
     True
     """
     assert M.D[0] == v.D
-    pass
+    res = {k: 0 for k in M.D[1]}
+    for i, j in M.f:
+        res[j] += (M[i, j] * v[i])
+    return Vec(M.D[1], res)
 
 
 def matrix_vector_mul(M, v):
@@ -188,7 +191,10 @@ def matrix_vector_mul(M, v):
     True
     """
     assert M.D[1] == v.D
-    pass
+    res = {k: 0 for k in M.D[0]}
+    for i, j in M.f:
+        res[i] += (M[i, j] * v[j])
+    return Vec(M.D[0], res)
 
 
 def matrix_matrix_mul(A, B):

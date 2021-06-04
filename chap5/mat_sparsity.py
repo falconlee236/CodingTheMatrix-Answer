@@ -1,6 +1,9 @@
 '''
->>> from mat import Mat
->>> from vec import Vec
+>>> import sys
+>>> import os
+>>> sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+>>> from module.mat import Mat
+>>> from module.vec import Vec
 
 >>> # getitem
 >>> M = Mat(({1,3,5}, {'a'}), {(1,'a'):4, (5,'a'): 2})

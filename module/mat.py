@@ -1,5 +1,5 @@
 # Copyright 2013 Philip N. Klein
-from vec import Vec
+from .vec import Vec
 # Test your Mat class over R and also over GF(2).
 # The following tests use only R.
 

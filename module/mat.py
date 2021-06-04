@@ -32,19 +32,6 @@ def equal(A, B):
 def setitem(M, k, val):
     """
     Set entry k of Mat M to val, where k is a 2-tuple.
-    >>> M = Mat(({'a','b','c'}, {5}), {('a', 5):3, ('b', 5):7})
-    >>> M['b', 5] = 9
-    >>> M['c', 5] = 13
-    >>> M == Mat(({'a','b','c'}, {5}), {('a', 5):3, ('b', 5):9, ('c',5):13})
-    True
-
-    Make sure your operations work with bizarre and unordered keys.
-
-    >>> N = Mat(({((),), 7}, {True, False}), {})
-    >>> N[(7, False)] = 1
-    >>> N[(((),), True)] = 2
-    >>> N == Mat(({((),), 7}, {True, False}), {(7,False):1, (((),), True):2})
-    True
     """
     assert k[0] in M.D[0] and k[1] in M.D[1]
     M.f[(k[0], k[1])] = val
@@ -56,24 +43,6 @@ def add(A, B):
 
     Consider using brackets notation A[...] or B[...] in your procedure
     to access entries of the input matrices.  This avoids some sparsity bugs.
-
-    >>> A1 = Mat(({3, 6}, {'x','y'}), {(3,'x'):-2, (6,'y'):3})
-    >>> A2 = Mat(({3, 6}, {'x','y'}), {(3,'y'):4})
-    >>> B = Mat(({3, 6}, {'x','y'}), {(3,'x'):-2, (3,'y'):4, (6,'y'):3})
-    >>> A1 + A2 == B
-    True
-    >>> A2 + A1 == B
-    True
-    >>> A1 == Mat(({3, 6}, {'x','y'}), {(3,'x'):-2, (6,'y'):3})
-    True
-    >>> zero = Mat(({3,6}, {'x','y'}), {})
-    >>> B + zero == B
-    True
-    >>> C1 = Mat(({1,3}, {2,4}), {(1,2):2, (3,4):3})
-    >>> C2 = Mat(({1,3}, {2,4}), {(1,4):1, (1,2):4})
-    >>> D = Mat(({1,3}, {2,4}), {(1,2):6, (1,4):1, (3,4):3})
-    >>> C1 + C2 == D
-    True
     """
     assert A.D == B.D
     m = Mat(A.D, {})
@@ -88,13 +57,6 @@ def scalar_mul(M, x):
     """
     Returns the result of scaling M by x.
 
-    >>> M = Mat(({1,3,5}, {2,4}), {(1,2):4, (5,4):2, (3,4):3})
-    >>> 0*M == Mat(({1, 3, 5}, {2, 4}), {})
-    True
-    >>> 1*M == M
-    True
-    >>> 0.25*M == Mat(({1,3,5}, {2,4}), {(1,2):1.0, (5,4):0.5, (3,4):0.75})
-    True
     """
     return Mat(M.D, {key: value*x for key, value in M.f.items()})
 
@@ -102,14 +64,6 @@ def scalar_mul(M, x):
 def transpose(M):
     """
     Returns the matrix that is the transpose of M.
-
-    >>> M = Mat(({0,1}, {0,1}), {(0,1):3, (1,0):2, (1,1):4})
-    >>> M.transpose() == Mat(({0,1}, {0,1}), {(0,1):2, (1,0):3, (1,1):4})
-    True
-    >>> M = Mat(({'x','y','z'}, {2,4}), {('x',4):3, ('x',2):2, ('y',4):4, ('z',4):5})
-    >>> Mt = Mat(({2,4}, {'x','y','z'}), {(4,'x'):3, (2,'x'):2, (4,'y'):4, (4,'z'):5})
-    >>> M.transpose() == Mt
-    True
     """
     return Mat((M.D[1], M.D[0]), {(key[1], key[0]): value for key, value in M.f.items()})
 
@@ -121,22 +75,7 @@ def vector_matrix_mul(v, M):
     Consider using brackets notation v[...] in your procedure
     to access entries of the input vector.  This avoids some sparsity bugs.
 
-    >>> v1 = Vec({1, 2, 3}, {1: 1, 2: 8})
-    >>> M1 = Mat(({1, 2, 3}, {'a', 'b', 'c'}), {(1, 'b'): 2, (2, 'a'):-1, (3, 'a'): 1, (3, 'c'): 7})
-    >>> v1*M1 == Vec({'a', 'b', 'c'},{'a': -8, 'b': 2, 'c': 0})
-    True
-    >>> v1 == Vec({1, 2, 3}, {1: 1, 2: 8})
-    True
-    >>> M1 == Mat(({1, 2, 3}, {'a', 'b', 'c'}), {(1, 'b'): 2, (2, 'a'):-1, (3, 'a'): 1, (3, 'c'): 7})
-    True
-    >>> v2 = Vec({'a','b'}, {})
-    >>> M2 = Mat(({'a','b'}, {0, 2, 4, 6, 7}), {})
-    >>> v2*M2 == Vec({0, 2, 4, 6, 7},{})
-    True
-    >>> v3 = Vec({'a','b'},{'a':1,'b':1})
-    >>> M3 = Mat(({'a', 'b'}, {0, 1}), {('a', 1): 1, ('b', 1): 1, ('a', 0): 1, ('b', 0): 1})
-    >>> v3*M3 == Vec({0, 1},{0: 2, 1: 2})
-    True
+    
     """
     assert M.D[0] == v.D
     res = {k: 0 for k in M.D[1]}
@@ -152,22 +91,7 @@ def matrix_vector_mul(M, v):
     Consider using brackets notation v[...] in your procedure
     to access entries of the input vector.  This avoids some sparsity bugs.
 
-    >>> N1 = Mat(({1, 3, 5, 7}, {'a', 'b'}), {(1, 'a'): -1, (1, 'b'): 2, (3, 'a'): 1, (3, 'b'):4, (7, 'a'): 3, (5, 'b'):-1})
-    >>> u1 = Vec({'a', 'b'}, {'a': 1, 'b': 2})
-    >>> N1*u1 == Vec({1, 3, 5, 7},{1: 3, 3: 9, 5: -2, 7: 3})
-    True
-    >>> N1 == Mat(({1, 3, 5, 7}, {'a', 'b'}), {(1, 'a'): -1, (1, 'b'): 2, (3, 'a'): 1, (3, 'b'):4, (7, 'a'): 3, (5, 'b'):-1})
-    True
-    >>> u1 == Vec({'a', 'b'}, {'a': 1, 'b': 2})
-    True
-    >>> N2 = Mat(({('a', 'b'), ('c', 'd')}, {1, 2, 3, 5, 8}), {})
-    >>> u2 = Vec({1, 2, 3, 5, 8}, {})
-    >>> N2*u2 == Vec({('a', 'b'), ('c', 'd')},{})
-    True
-    >>> M3 = Mat(({0,1},{'a','b'}),{(0,'a'):1, (0,'b'):1, (1,'a'):1, (1,'b'):1})
-    >>> v3 = Vec({'a','b'},{'a':1,'b':1})
-    >>> M3*v3 == Vec({0, 1},{0: 2, 1: 2})
-    True
+    
     """
     assert M.D[1] == v.D
     res = {k: 0 for k in M.D[0]}
@@ -183,24 +107,6 @@ def matrix_matrix_mul(A, B):
     Consider using brackets notation A[...] and B[...] in your procedure
     to access entries of the input matrices.  This avoids some sparsity bugs.
 
-    >>> A = Mat(({0,1,2}, {0,1,2}), {(1,1):4, (0,0):0, (1,2):1, (1,0):5, (0,1):3, (0,2):2})
-    >>> B = Mat(({0,1,2}, {0,1,2}), {(1,0):5, (2,1):3, (1,1):2, (2,0):0, (0,0):1, (0,1):4})
-    >>> A*B == Mat(({0,1,2}, {0,1,2}), {(0,0):15, (0,1):12, (1,0):25, (1,1):31})
-    True
-    >>> C = Mat(({0,1,2}, {'a','b'}), {(0,'a'):4, (0,'b'):-3, (1,'a'):1, (2,'a'):1, (2,'b'):-2})
-    >>> D = Mat(({'a','b'}, {'x','y'}), {('a','x'):3, ('a','y'):-2, ('b','x'):4, ('b','y'):-1})
-    >>> C*D == Mat(({0,1,2}, {'x','y'}), {(0,'y'):-5, (1,'x'):3, (1,'y'):-2, (2,'x'):-5})
-    True
-    >>> M = Mat(({0, 1}, {'a', 'c', 'b'}), {})
-    >>> N = Mat(({'a', 'c', 'b'}, {(1, 1), (2, 2)}), {})
-    >>> M*N == Mat(({0,1}, {(1,1), (2,2)}), {})
-    True
-    >>> E = Mat(({'a','b'},{'A','B'}), {('a','A'):1,('a','B'):2,('b','A'):3,('b','B'):4})
-    >>> F = Mat(({'A','B'},{'c','d'}),{('A','d'):5})
-    >>> E*F == Mat(({'a', 'b'}, {'d', 'c'}), {('b', 'd'): 15, ('a', 'd'): 5})
-    True
-    >>> F.transpose()*E.transpose() == Mat(({'d', 'c'}, {'a', 'b'}), {('d', 'b'): 15, ('d', 'a'): 5})
-    True
     """
     assert A.D[1] == B.D[0]
     res = {(i[0], j[1]): 0 for i in A.f for j in B.f}

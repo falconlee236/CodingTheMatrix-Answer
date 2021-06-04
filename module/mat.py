@@ -7,11 +7,6 @@ from vec import Vec
 def getitem(M, k):
     """
     Returns the value of entry k in M, where k is a 2-tuple
-    >>> M = Mat(({1,3,5}, {'a'}), {(1,'a'):4, (5,'a'): 2})
-    >>> M[1,'a']
-    4
-    >>> M[3,'a']
-    0
     """
     assert k[0] in M.D[0] and k[1] in M.D[1]
     return M.f[(k[0], k[1])] if k in M.f.keys() else 0
@@ -23,22 +18,6 @@ def equal(A, B):
 
     Consider using brackets notation A[...] and B[...] in your procedure
     to access entries of the input matrices.  This avoids some sparsity bugs.
-
-    >>> Mat(({'a','b'}, {'A','B'}), {('a','B'):0}) == Mat(({'a','b'}, {'A','B'}), {('b','B'):0})
-    True
-    >>> A = Mat(({'a','b'}, {'A','B'}), {('a','B'):2, ('b','A'):1})
-    >>> B = Mat(({'a','b'}, {'A','B'}), {('a','B'):2, ('b','A'):1, ('b','B'):0})
-    >>> C = Mat(({'a','b'}, {'A','B'}), {('a','B'):2, ('b','A'):1, ('b','B'):5})
-    >>> A == B
-    True
-    >>> B == A
-    True
-    >>> A == C
-    False
-    >>> C == A
-    False
-    >>> A == Mat(({'a','b'}, {'A','B'}), {('a','B'):2, ('b','A'):1})
-    True
     """
     assert A.D == B.D
     for key in A.f:
@@ -224,7 +203,7 @@ def matrix_matrix_mul(A, B):
     True
     """
     assert A.D[1] == B.D[0]
-    res = {(i, j): 0 for i in A.D[0] for j in B.D[1]}
+    res = {(i[0], j[1]): 0 for i in A.f for j in B.f}
     for i, j in A.f:
         for x, y in B.f:
             if j == x:

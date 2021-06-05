@@ -10,7 +10,7 @@ Requires: fields matutil
 """
 
 from .GF2 import zero, one
-from .mat import *
+from .mat import Mat
 import random
 
 def str2bits(inp):
@@ -41,8 +41,8 @@ def bits2mat(bits,nrows=4,trans=False):
     """
     ncols = len(bits)//nrows
     f = {(i,j):one for j in range(ncols) for i in range(nrows) if bits[nrows*j+i]}
-    A = mat.Mat((set(range(nrows)), set(range(ncols))), f)
-    if trans: A = mat.transpose(A)
+    A = Mat((set(range(nrows)), set(range(ncols))), f)
+    if trans: A = Mat.transpose(A)
     return A
 
 def mat2bits(A, trans=False):
@@ -65,4 +65,4 @@ def noise(A,freq):
     The probability for 1 in any entry of the matrix is freq.
     """
     f = {(i,j):one for i in A.D[0] for j in A.D[1] if random.random() < freq}
-    return mat.Mat(A.D, f)
+    return Mat(A.D, f)

@@ -14,8 +14,3 @@ G = listlist2mat([[one, 0, one, one],
                   [one, 0, 0, 0]])
 v = Vec({0, 1, 2, 3}, {0: one, 3: one})
 print(G*v)
-
-'''
-0 1 2 3 4 5 6
-0 0 1 1 0 0 1
-'''

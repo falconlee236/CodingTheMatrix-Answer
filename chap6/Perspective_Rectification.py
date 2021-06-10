@@ -2,7 +2,8 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from module.vec import Vec
-
+from module.matutil import rowdict2mat
+from module.vecutil import list2vec
 
 # Task 6.12.1
 def move2board(y):
@@ -22,3 +23,20 @@ def make_equations(x1, x2, w1, w2):
 
 # Task 6.12.3
 w = Vec({(a, b) for a in {'y1', 'y2', 'y3'} for b in {'x1', 'x2', 'x3'}}, {('y1', 'x1'): 1})
+
+
+# Task 6.12.4
+L = rowdict2mat({0: make_equations(358, 36, 0, 0)[0], 1: make_equations(358, 36, 0, 0)[1],
+                2: make_equations(329, 597, 0, 1)[0],  3: make_equations(329, 597, 0, 1)[1],
+                4: make_equations(592, 157, 1, 0)[0],  5: make_equations(592, 157, 1, 0)[1],
+                6: make_equations(580, 483, 1, 1)[0],  7: make_equations(580, 483, 1, 1)[1],
+                8: w})
+b = list2vec([0, 0, 0, 0, 0, 0, 0, 0, 1])
+print(L)
+print(b)
+
+a1 = 561/29
+a2 = -358 * a1 - 36
+print(-358 + -36*a1 + -1*a2 == 0)
+h = Vec({(a, b) for a in {'y1', 'y2', 'y3'} for b in {'x1', 'x2', 'x3'}}, 
+        {('y1', 'x1'): 1, ('y1', 'x2') : a1, ('y1', 'x3'): a2})

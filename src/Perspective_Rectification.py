@@ -1,7 +1,9 @@
 from vec import Vec
-from matutil import rowdict2mat
+from mat import Mat
+from matutil import rowdict2mat, mat2coldict, coldict2mat
 from vecutil import list2vec
 from solver import solve
+import image_mat_util
 
 
 # Task 6.12.1
@@ -31,8 +33,26 @@ L = rowdict2mat({0: make_equations(358, 36, 0, 0)[0], 1: make_equations(358, 36,
                 6: make_equations(580, 483, 1, 1)[0],  7: make_equations(580, 483, 1, 1)[1],
                 8: w})
 b = list2vec([0, 0, 0, 0, 0, 0, 0, 0, 1])
-print(L)
-print(b)
 h = solve(L, b)
-print(h)
-print(L*h == b)
+H = Mat(({'y1', 'y2', 'y3'}, {'x1', 'x2', 'x3'}), h.f)
+print(H)
+
+
+# Task 6.12.5
+(X_pts, colors) = image_mat_util.file2mat('board.png', ('x1', 'x2', 'x3'))
+
+
+# Task 6.12.6
+Y_pts = H * X_pts
+
+
+# Task 6.12.7
+def mat_move2board(Y):
+    return coldict2mat({key: move2board(value) for key, value in mat2coldict(Y).items()})
+
+
+Y_board = mat_move2board(Y_pts)
+
+
+# Task 6.12.8
+image_mat_util.mat2display(Y_board, colors, ('y1', 'y2', 'y3'), scale=100, xmin=None, ymin=None)

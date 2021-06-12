@@ -1,5 +1,4 @@
 from matutil import coldict2mat
-from mat import Mat
 from vec import Vec
 
 with open('UN_voting_data.txt', 'r') as file:

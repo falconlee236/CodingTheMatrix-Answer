@@ -72,7 +72,7 @@ def equal(u, v):
     """
     assert u.D == v.D
     for k in v.D:
-        if getitem(v, k) != getitem(u, k):
+        if v[k] != u[k]:
             return False
     return True
 

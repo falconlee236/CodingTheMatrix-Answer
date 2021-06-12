@@ -1,8 +1,5 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from module.matutil import rowdict2mat, coldict2mat, mat2coldict, mat2rowdict
-from module.mat import Mat
+from matutil import rowdict2mat, coldict2mat, mat2coldict, mat2rowdict
+from mat import Mat
 
 
 # Problem 5.17.16

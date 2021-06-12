@@ -1,9 +1,5 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from module.matutil import listlist2mat, mat2coldict, mat2rowdict
-from module.vec import Vec
-from module.mat import Mat
+from matutil import listlist2mat, mat2coldict, mat2rowdict
+from vec import Vec
 
 
 # Problem 5.17.12

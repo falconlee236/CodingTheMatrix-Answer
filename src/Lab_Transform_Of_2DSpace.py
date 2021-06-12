@@ -1,8 +1,5 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from module.image_mat_util import file2mat, mat2display
-from module.mat import Mat
+from image_mat_util import file2mat, mat2display
+from mat import Mat
 from math import sin, cos, pi, atan
 
 # Task 5.15.1

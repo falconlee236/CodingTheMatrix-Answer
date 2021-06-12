@@ -1,11 +1,8 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from module.matutil import listlist2mat, mat2coldict, coldict2mat
-from module.bitutil import bits2mat, bits2str, str2bits, mat2bits, noise
-from module.GF2 import one
-from module.vec import Vec
-from module.mat import Mat
+from matutil import listlist2mat, mat2coldict, coldict2mat
+from bitutil import bits2mat, bits2str, str2bits, mat2bits, noise
+from GF2 import one
+from vec import Vec
+from mat import Mat
 
 # Task 5.14.1
 G = listlist2mat([[one, 0, one, one],

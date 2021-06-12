@@ -1,9 +1,6 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from module.matutil import coldict2mat
-from module.mat import Mat
-from module.vec import Vec
+from matutil import coldict2mat
+from mat import Mat
+from vec import Vec
 
 with open('UN_voting_data.txt', 'r') as file:
     temp = file.readlines()

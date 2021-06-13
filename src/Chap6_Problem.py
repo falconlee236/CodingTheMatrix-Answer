@@ -163,3 +163,24 @@ T = [[0, one, one, 0], [one, 0, 0, one]]
 L = [[one, one, one, one], [one, 0, 0, 0], [0, 0, 0, one]]
 print(superset_basis(list(map(list2vec, T)), list(map(list2vec, L))))
 
+
+# Problem 6.14.19
+def exchange(S, A, z):
+    M = S + [z]
+    for i in range(len(S)):
+        if S[i] not in A:
+            sub_m = M[:i] + M[i+1:]
+            if vec2rep(sub_m, S[i]) is not None:
+                return S[i]
+
+
+''' Testcase 1 '''
+S = [list2vec(v) for v in [[0, 0, 5, 3], [2, 0, 1, 3], [0, 0, 1, 0], [1, 2, 3, 4]]]
+A = [list2vec(v) for v in [[0, 0, 5, 3], [2, 0, 1, 3]]]
+z = list2vec([0, 2, 1, 1])
+print(exchange(S, A, z))
+''' Testcase 2 '''
+S = [list2vec(v) for v in [[0, one, one, one], [one, 0, one, one], [one, one, 0, one], [one, one, one, 0]]]
+A = [list2vec(v) for v in [[0, one, one, one], [one, one, 0, one]]]
+z = list2vec([one, one, one, one])
+print(exchange(S, A, z))

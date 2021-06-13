@@ -46,11 +46,10 @@ print(vec2rep(list(map(list2vec, veclist)), list2vec([0, one, one])))
 # Problem 6.14.15
 def is_superfluous(L, i):
     if len(L) == 1:
-        sub_m = coldict2mat(L)
-    else:
-        sub_m = coldict2mat(L[:i] + L[i+1:])
+        return False
+    sub_m = coldict2mat(L[:i] + L[i+1:])
     residual = L[i] - sub_m * solve(sub_m, L[i])
-    if residual * residual < 1E-14:
+    if residual * residual < pow(10, -14):
         return True
     return False
 
@@ -77,6 +76,8 @@ print(is_superfluous(list(map(list2vec, veclist)), 2))
 
 # Problem 6.14.16
 def is_independent(L):
+    if len(L) == 1:
+        return True
     for i in range(len(L)):
         if is_superfluous(L, i) is True:
             return False
@@ -102,3 +103,63 @@ print(is_independent(list(map(list2vec, veclist))))
 ''' Testcase 4 '''
 veclist = [[one, 0, one, 0], [0, one, 0, 0], [one, one, one, one], [one, 0, 0, one]]
 print(is_independent(list(map(list2vec, veclist))))
+
+
+# Problem 6.14.17
+def subset_basis(T):
+    B = []
+    for i in T:
+        B.append(i)
+        if is_independent(B) is False:
+            B.pop()
+    return B
+
+
+print("\nProblem 6.14.17")
+''' Testcase 1 '''
+a0 = Vec({'a', 'b', 'c', 'd'}, {'a': 1})
+a1 = Vec({'a', 'b', 'c', 'd'}, {'b': 1})
+a2 = Vec({'a', 'b', 'c', 'd'}, {'c': 1})
+a3 = Vec({'a', 'b', 'c', 'd'}, {'a': 1, 'c': 3})
+print(subset_basis([a0, a1, a2, a3]))
+print(subset_basis([a0, a3, a1, a2]))
+''' Testcase 2 '''
+veclist = [[1, 1, 2, 1], [2, 1, 1, 1], [1, 2, 2, 1], [2, 2, 1, 2], [2, 2, 2, 2]]
+print(subset_basis(list(map(list2vec, veclist))))
+''' Testcase 3 '''
+veclist = [[one, one, 0, 0], [one, one, one, one], [0, 0, one, one], [0, 0, 0, one], [0, 0, one, 0]]
+print(subset_basis(list(map(list2vec, veclist))))
+
+
+# Problem 6.14.18
+def superset_basis(T, L):
+    S = T[:]
+    for i in L:
+        if i in S:
+            continue
+        S.append(i)
+        if is_independent(S) is False:
+            S.remove(i)
+    return S
+
+
+print("\nProblem 6.14.18")
+''' Testcase 1 '''
+a0 = Vec({'a', 'b', 'c', 'd'}, {'a': 1})
+a1 = Vec({'a', 'b', 'c', 'd'}, {'b': 1})
+a2 = Vec({'a', 'b', 'c', 'd'}, {'c': 1})
+a3 = Vec({'a', 'b', 'c', 'd'}, {'a': 1, 'c': 3})
+print(superset_basis([a0, a3], [a0, a1, a2]))
+''' Testcase 2 '''
+T = [[0, 5, 3], [0, 2, 2], [1, 5, 7]]
+L = [[1, 1, 1], [0, 1, 1], [0, 0, 1]]
+print(superset_basis(list(map(list2vec, T)), list(map(list2vec, L))))
+''' Testcase 3 '''
+T = [[0, 5, 3], [0, 2, 2]]
+L = [[1, 1, 1], [0, 1, 1], [0, 0, 1]]
+print(superset_basis(list(map(list2vec, T)), list(map(list2vec, L))))
+''' Testcase 4 '''
+T = [[0, one, one, 0], [one, 0, 0, one]]
+L = [[one, one, one, one], [one, 0, 0, 0], [0, 0, 0, one]]
+print(superset_basis(list(map(list2vec, T)), list(map(list2vec, L))))
+

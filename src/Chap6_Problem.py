@@ -172,6 +172,7 @@ def exchange(S, A, z):
             sub_m = M[:i] + M[i+1:]
             if vec2rep(sub_m, S[i]) is not None:
                 return S[i]
+    return None
 
 
 ''' Testcase 1 '''

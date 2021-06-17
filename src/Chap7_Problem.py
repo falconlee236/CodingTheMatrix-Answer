@@ -1,4 +1,4 @@
-from Chap6_Problem import exchange
+from Chap6_Problem import exchange, subset_basis
 from vecutil import list2vec
 from independence import rank
 from GF2 import one
@@ -39,10 +39,18 @@ if __name__ == "__main__":
     print(my_is_independent([list2vec(v) for v in [[one, 0, one, 0], [0, one, 0, 0], [one, one, one, one], [one, 0, 0, one]]]))
 
 
+# Problem 7.7.7
+def my_rank(L):
+    return len(subset_basis(L))
 
 
-
-
+if __name__ == "__main__":
+    ''' Test case 1 '''
+    print(my_rank([list2vec(v) for v in [[1, 2, 3], [4, 5, 6], [1.1, 1.1, 1.1]]]))
+    ''' Test case 2 '''
+    print(my_rank([list2vec(v) for v in [[1, 3, 0, 0], [2, 0, 5, 1], [0, 0, 1, 0], [0, 0, 7, -1]]]))
+    ''' Test case 3 '''
+    print(my_rank([list2vec(v) for v in [[one, 0, one, 0], [0, one, 0, 0], [one, one, one, one], [0, 0, 0, one]]]))
 
 
 

@@ -79,9 +79,7 @@ if __name__ == "__main__":
 
 # Problem 6.14.16
 def is_independent(L):
-    if len(L) == 1:
-        return True
-    for i in range(len(L)):
+    for i in range(1, len(L)):
         if is_superfluous(L, i) is True:
             return False
     return True
@@ -115,7 +113,7 @@ def subset_basis(T):
     for i in T:
         B.append(i)
         if is_independent(B) is False:
-            B.pop()
+            B.remove(i)
     return B
 
 

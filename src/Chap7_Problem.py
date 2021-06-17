@@ -10,13 +10,14 @@ def morph(S, B):
         w = exchange(T, B, x)
         res.append((x, w))
         T.append(x)
-        T.remove(T.index(w))
+        T.remove(w)
     return res
 
 
-S = [list2vec(v) for v in [[2, 4, 0], [1, 0, 3], [0, 4, 4], [1, 1, 1]]]
-B = [list2vec(v) for v in [[1, 0, 0], [0, 1, 0], [0, 0, 1]]]
-for (z, w) in morph(S, B):
-    print(f"injecting {z}")
-    print(f"ejecting {w}")
-    print()
+if __name__ == "__main__":
+    S = [list2vec(v) for v in [[2, 4, 0], [1, 0, 3], [0, 4, 4], [1, 1, 1]]]
+    B = [list2vec(v) for v in [[1, 0, 0], [0, 1, 0], [0, 0, 1]]]
+    for (z, w) in morph(S, B):
+        print(f"injecting {z}")
+        print(f"ejecting {w}")
+        print()

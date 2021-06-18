@@ -56,10 +56,9 @@ if __name__ == "__main__":
 # Problem 7.7.11
 def direct_sum_decompose(U_basis, V_basis, w):
     ans = vec2rep(U_basis + V_basis, w)
-    u = rep2vec(list2vec([ans[i] for i in range(len(U_basis))]), U_basis)
-    v = rep2vec(list2vec([ans[i] for i in range(len(U_basis), len(U_basis + V_basis))]), V_basis)
-    print(ans)
-    return (u, v)
+    u = list2vec([ans[i] for i in range(len(U_basis))])
+    v = list2vec([ans[i] for i in range(len(U_basis), len(U_basis + V_basis))])
+    return (rep2vec(u, U_basis), rep2vec(v, V_basis))
 
 
 if __name__ == "__main__":
@@ -67,6 +66,21 @@ if __name__ == "__main__":
     U_basis = list(map(list2vec, [[2, 1, 0, 0, 6, 0], [11, 5, 0, 0, 1, 0], [3, 1.5, 0, 0, 7.5, 0]]))
     V_basis = list(map(list2vec, [[0, 0, 7, 0, 0, 1], [0, 0, 15, 0, 0, 2]]))
     w = list2vec([2, 5, 0, 0, 1, 0])
+    print(direct_sum_decompose(U_basis, V_basis, w))
+    w = list2vec([0, 0, 3, 0, 0, -4])
+    print(direct_sum_decompose(U_basis, V_basis, w))
+    w = list2vec([1, 2, 0, 0, 2, 1])
+    print(direct_sum_decompose(U_basis, V_basis, w))
+    w = list2vec([-6, 2, 4, 0, 4, 5])
+    print(direct_sum_decompose(U_basis, V_basis, w))
+    ''' Test case2 '''
+    U_basis = list(map(list2vec, [[one, one, 0, one, 0, one], [one, one, 0, 0, 0, one], [one, 0, 0, 0, 0, 0]]))
+    V_basis = list(map(list2vec, [[one, one, one, 0, one, one]]))
+    w = list2vec([0, 0, 0, 0, 0, 0])
+    print(direct_sum_decompose(U_basis, V_basis, w))
+    w = list2vec([one, 0, 0, one, 0, 0])
+    print(direct_sum_decompose(U_basis, V_basis, w))
+    w = list2vec([one, one, one, one, one, one])
     print(direct_sum_decompose(U_basis, V_basis, w))
 
 

@@ -1,6 +1,7 @@
 from Chap6_Problem import exchange, subset_basis, vec2rep, rep2vec
 from vecutil import list2vec
-from independence import rank
+from independence import rank, is_independent
+from matutil import listlist2mat, mat2coldict
 from GF2 import one
 
 
@@ -84,8 +85,20 @@ if __name__ == "__main__":
     print(direct_sum_decompose(U_basis, V_basis, w))
 
 
+# Problem 7.7.12
+def is_invertible(M):
+    return True if len(M.D[0]) == len(M.D[1]) and is_independent(list(mat2coldict(M).values())) is True else False
 
 
+if __name__ == "__main__":
+    m1 = listlist2mat([[1, 2, 3], [3, 1, 1]])
+    m2 = listlist2mat([[1, 0, 1, 0], [0, 2, 1, 0], [0, 0, 3, 1], [0, 0, 0, 4]])
+    m3 = listlist2mat([[1, 0], [0, 1], [2, 1]])
+    m4 = listlist2mat([[1, 0], [0, 1]])
+    m5 = listlist2mat([[1, 0, 1], [0, 1, 1], [1, 1, 0]])
+    m6 = listlist2mat([[one, 0, one], [0, one, one], [one, one, 0]])
+    m7 = listlist2mat([[one, one], [0, one]])
+    print(list(map(is_invertible, [m1, m2, m3, m4, m5, m6, m7])))
 
 
 

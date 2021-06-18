@@ -101,7 +101,12 @@ if __name__ == "__main__":
     print(list(map(is_invertible, [m1, m2, m3, m4, m5, m6, m7])))
 
 
+# Problem 7.7.13
+def find_matrix_inverse(A):
+    pass
 
+
+if __name__ == "__main__":
 
 
 

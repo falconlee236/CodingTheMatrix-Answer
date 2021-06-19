@@ -1,4 +1,5 @@
 from factoring_support import intsqrt, gcd, dumb_factor
+from GF2 import one
 
 
 # Task 8.8.1
@@ -42,9 +43,13 @@ print(dumb_factor(2 * 17, primeset))
 print(dumb_factor(2 * 3 * 5 * 7 * 19, primeset))
 
 
+# Task 8.8.5
+def int2GF2(i):
+    return one if i % 2 == 1 else 0
 
 
-
+print(int2GF2(3))
+print(int2GF2(4))
 
 
 

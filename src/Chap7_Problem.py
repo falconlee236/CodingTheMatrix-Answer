@@ -1,8 +1,9 @@
 from Chap6_Problem import exchange, subset_basis, vec2rep, rep2vec
 from vecutil import list2vec
 from independence import rank, is_independent
-from matutil import listlist2mat, mat2coldict
+from matutil import listlist2mat, mat2coldict, coldict2mat, identity
 from GF2 import one
+from solver import solve
 
 
 # Problem 7.7.4
@@ -103,13 +104,28 @@ if __name__ == "__main__":
 
 # Problem 7.7.13
 def find_matrix_inverse(A):
-    pass
+    return coldict2mat({k: solve(A, value) for k, value in mat2coldict(identity(A.D[0], one)).items()})
 
 
 if __name__ == "__main__":
-
-
-
+    '''Test case 1'''
+    M = listlist2mat([[0, one, 0], [one, 0, 0], [0, 0, one]])
+    m = find_matrix_inverse(M)
+    print(m)
+    print(M*m)
+    print(m*M)
+    '''Test case 2'''
+    M = listlist2mat([[one, one, one, one], [one, one, one, 0], [0, one, 0, one], [0, 0, one, 0]])
+    m = find_matrix_inverse(M)
+    print(m)
+    print(M*m)
+    print(m*M)
+    '''Test case 3'''
+    M = listlist2mat([[one, one, 0, 0, 0], [0, one, one, 0, 0], [0, 0, one, one, 0], [0, 0, 0, one, one], [0, 0, 0, 0, one]])
+    m = find_matrix_inverse(M)
+    print(m)
+    print(M*m)
+    print(m*M)
 
 
 

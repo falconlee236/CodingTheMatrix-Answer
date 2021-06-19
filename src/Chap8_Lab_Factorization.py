@@ -1,5 +1,6 @@
 from factoring_support import intsqrt, gcd, dumb_factor
 from GF2 import one
+from vec import Vec
 
 
 # Task 8.8.1
@@ -50,6 +51,17 @@ def int2GF2(i):
 
 print(int2GF2(3))
 print(int2GF2(4))
+
+
+# Task 8.8.6
+def make_Vec(primeset, factors):
+    return Vec(primeset, {a: int2GF2(b) for (a, b) in factors})
+
+
+print(make_Vec({2, 3, 5, 7, 11}, [(3, 1)]))
+print(make_Vec({2, 3, 5, 7, 11}, [(2, 17), (3, 0), (5, 1), (11, 3)]))
+
+
 
 
 

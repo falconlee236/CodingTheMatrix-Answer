@@ -90,7 +90,11 @@ for x in rowlist:
     print(x)
 
 
-
+print("Task 8.8.8")
+# Task 8.8.8
+a = 53 * 77
+b = 2 * 3 * 3 * 5 * 13
+print(gcd(a - b, N))
 
 
 

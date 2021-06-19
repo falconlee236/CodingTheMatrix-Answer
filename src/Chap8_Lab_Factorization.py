@@ -97,7 +97,11 @@ b = 2 * 3 * 3 * 5 * 13
 print(gcd(a - b, N))
 
 
-
+print("Task 8.8.9")
+# Task 8.8.9
+a = 53 * 67 * 71
+b = 2 * 3 * 3 * 5 * 19 * 23
+print(gcd(a - b, N))
 
 
 

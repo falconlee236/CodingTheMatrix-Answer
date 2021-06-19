@@ -1,4 +1,4 @@
-from factoring_support import intsqrt, gcd
+from factoring_support import intsqrt, gcd, dumb_factor
 
 
 # Task 8.8.1
@@ -23,7 +23,14 @@ d = gcd(a, b)
 print(a % d == 0 and b % d == 0 and d >= s)
 
 
-
+# Task 8.8.3
+N = 367160330145890434494322103
+a = 67469780066325164
+b = 9429601150488992
+d = gcd(a - b, N)
+print((a * a - b * b) % N == 0)
+print(N % d == 0)
+print(d)
 
 
 

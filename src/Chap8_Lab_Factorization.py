@@ -33,7 +33,13 @@ print(N % d == 0)
 print(d)
 
 
-
+# Task 8.8.4
+primeset = {2, 3, 5, 7, 11, 13}
+print(dumb_factor(12, primeset))
+print(dumb_factor(154, primeset))
+print(dumb_factor(2 * 3 * 3 * 3 * 11 * 11 * 13, primeset))
+print(dumb_factor(2 * 17, primeset))
+print(dumb_factor(2 * 3 * 5 * 7 * 19, primeset))
 
 
 

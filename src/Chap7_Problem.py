@@ -1,9 +1,10 @@
 from Chap6_Problem import exchange, subset_basis, vec2rep, rep2vec
 from vecutil import list2vec
 from independence import rank, is_independent
-from matutil import listlist2mat, mat2coldict, coldict2mat, identity
+from matutil import listlist2mat, mat2coldict, mat2rowdict, coldict2mat, identity
 from GF2 import one
 from solver import solve
+from triangular import triangular_solve
 
 
 # Problem 7.7.4
@@ -128,4 +129,18 @@ if __name__ == "__main__":
     print(m*M)
 
 
+# Problem 7.7.14
+def find_triangular_matrix_inverse(A):
+    B = mat2rowdict(A)
+    label_list = list(range(len(B)))
+    return coldict2mat({k: triangular_solve(B, label_list, value) for k, value in mat2coldict(identity(A.D[0], 1)).items()})
+
+
+if __name__ == "__main__":
+    '''Test case'''
+    A = listlist2mat([[1, .5, .2, 4], [0, 1, .3, .9], [0, 0, 1, .1], [0, 0, 0, 1]])
+    a = find_triangular_matrix_inverse(A)
+    print(a)
+    print(A*a)
+    print(a*A)
 

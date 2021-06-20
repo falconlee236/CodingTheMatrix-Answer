@@ -62,7 +62,12 @@ b = [one, 0, one, 0]
 print(echelon_solve(rowlist, label_list, b))
 
 
-
+# Problem 8.9.7
+D = {'A', 'B', 'C', 'D'}
+label_list = sorted(list(D))
+rowlist = [Vec(D, {'A': one, 'B': one, 'D': one}), Vec(D, {'B': one}), Vec(D, {'C': one}), Vec(D, {'D': one})]
+b = [one, one, 0, 0]
+print(echelon_solve(rowlist, label_list, b))
 
 
 

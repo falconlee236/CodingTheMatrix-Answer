@@ -25,16 +25,6 @@ print(is_echelon([[0, 2, 3, 0, 5, 6], [0, 0, 1, 0, 3, 4], [0, 0, 0, 0, 0, 0], [0
 
 # Problem 8.9.6
 def echelon_solve(rowlist, label_list, b):
-    '''
-    def triangular_solve(rowlist, label_list, b)
-        D = rowlist[0].D
-        x = zero_vec(D)
-        for j in reversed(range(len(D))):
-            c = label_list[j]
-            row = rowlist[j]
-            x[c] = (b[j] - x*row)/row[c]
-        return x
-    '''
     D = rowlist[0].D
     x = zero_vec(D)
     for j in reversed(range(len(rowlist))):

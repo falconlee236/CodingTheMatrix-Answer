@@ -137,6 +137,7 @@ def find_factorization(N, M):
                 return res, g
 
 
+N = 2419
 M = transformation_rows(rowlist)
 print(find_factorization(N, M))
 
@@ -154,6 +155,7 @@ print(3)
 print(find_factorization(N, M))
 '''
 
+'''
 print("Task 8.8.12")
 # Task 8.8.12
 N = 20672783502493917028427
@@ -164,8 +166,18 @@ print(2)
 M = transformation_rows(rowlist)
 print(3)
 print(find_factorization(N, M))
+'''
 
-
+print("Task 8.8.13")
+# Task 8.8.12
+N = 20672783502493917028427
+primeset = primes(10000)
+print(1)
+roots, rowlist = find_candidates(N, primeset)
+print(2)
+M_rows = transformation_rows(rowlist, sorted(primeset, reverse=True))
+print(3)
+print(find_factorization(N, M_rows))
 
 
 

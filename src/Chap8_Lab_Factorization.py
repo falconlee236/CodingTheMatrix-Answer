@@ -1,9 +1,12 @@
-from factoring_support import intsqrt, gcd, dumb_factor, primes
+from factoring_support import intsqrt, gcd, dumb_factor, primes, prod
+from echelon import transformation_rows
 from GF2 import one
 from vec import Vec
 
 
 print("Task 8.8.1")
+
+
 # Task 8.8.1
 def root_method(N):
     for x in range(1, N):
@@ -49,6 +52,8 @@ print(dumb_factor(2 * 3 * 5 * 7 * 19, primeset))
 
 
 print("Task 8.8.5")
+
+
 # Task 8.8.5
 def int2GF2(i):
     return one if i % 2 == 1 else 0
@@ -59,6 +64,8 @@ print(int2GF2(4))
 
 
 print("Task 8.8.6")
+
+
 # Task 8.8.6
 def make_Vec(primeset, factors):
     return Vec(primeset, {a: int2GF2(b) for (a, b) in factors})
@@ -69,6 +76,8 @@ print(make_Vec({2, 3, 5, 7, 11}, [(2, 17), (3, 0), (5, 1), (11, 3)]))
 
 
 print("Task 8.8.7")
+
+
 # Task 8.8.7
 def find_candidates(N, primeset):
     roots = []
@@ -84,10 +93,9 @@ def find_candidates(N, primeset):
     return roots, [make_Vec(primeset, row) for row in rowlist]
 
 
-roots, rowlist = find_candidates(2419, primes(32))
+N = 2419
+roots, rowlist = find_candidates(N, primes(32))
 print(roots)
-for x in rowlist:
-    print(x)
 
 
 print("Task 8.8.8")
@@ -102,6 +110,39 @@ print("Task 8.8.9")
 a = 53 * 67 * 71
 b = 2 * 3 * 3 * 5 * 19 * 23
 print(gcd(a - b, N))
+
+
+print("Task 8.8.10")
+
+
+# Task 8.8.10
+def find_a_and_b(v, roots, N):
+    alist = [roots[i] for i in range(len(roots)) if v[i] == one]
+    a = prod(alist)
+    c = prod([x * x - N for x in alist])
+    b = intsqrt(c)
+    assert b * b == c
+    return (a, b)
+
+
+def find_factorization(N, v):
+    for i in range(-1, -N, -1):
+        try:
+            res = find_a_and_b(v[i], roots, N)
+        except AssertionError or ZeroDivisionError:
+            continue
+        else:
+            if gcd(res[0] - res[1], N) != 1:
+                return res
+
+
+v = transformation_rows(rowlist)
+print(find_factorization(N, v))
+
+
+
+
+
 
 
 

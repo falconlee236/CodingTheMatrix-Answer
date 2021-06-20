@@ -125,24 +125,45 @@ def find_a_and_b(v, roots, N):
     return (a, b)
 
 
-def find_factorization(N, v):
+def find_factorization(N, M):
     for i in range(-1, -N, -1):
         try:
-            res = find_a_and_b(v[i], roots, N)
+            res = find_a_and_b(M[i], roots, N)
         except AssertionError or ZeroDivisionError:
             continue
         else:
-            if gcd(res[0] - res[1], N) != 1:
-                return res
+            g = gcd(res[0] - res[1], N)
+            if g != 1:
+                return res, g
 
 
-v = transformation_rows(rowlist)
-print(find_factorization(N, v))
+M = transformation_rows(rowlist)
+print(find_factorization(N, M))
 
 
+print("Task 8.8.11")
+# Task 8.8.11
+'''
+N = 2461799993978700679
+primeset = primes(10000)
+print(1)
+roots, rowlist = find_candidates(N, primeset)
+print(2)
+M = transformation_rows(rowlist)
+print(3)
+print(find_factorization(N, M))
+'''
 
-
-
+print("Task 8.8.12")
+# Task 8.8.12
+N = 20672783502493917028427
+primeset = primes(10000)
+print(1)
+roots, rowlist = find_candidates(N, primeset)
+print(2)
+M = transformation_rows(rowlist)
+print(3)
+print(find_factorization(N, M))
 
 
 

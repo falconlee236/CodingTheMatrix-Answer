@@ -22,6 +22,7 @@ def fraction_wrong(A, b, w):
     return (l - k) / (2 * l)
     
 
+print(fraction_wrong(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]})))
 
 
 

@@ -25,8 +25,12 @@ def fraction_wrong(A, b, w):
 print(fraction_wrong(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]})))
 
 
+# Task 9.4.4
+def loss(A, b, w):
+    return (A * w - b) * (A * w - b)
 
 
+print(loss(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]})))
 
 
 

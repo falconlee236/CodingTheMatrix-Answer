@@ -12,10 +12,15 @@ def signum(u):
 
 
 print(signum(Vec({'A', 'B'}, {'A': 3, 'B': -2})))
+print(signum(Vec({1,2,3},{1:2, 2:-1})) == Vec({1,2,3},{1:1,2:-1,3:1}))
 
-
-
-
+# Task 9.4.3
+def fraction_wrong(A, b, w):
+    m = signum(A * w)
+    l = len(m.D)
+    k = m * b
+    return (l - k) / (2 * l)
+    
 
 
 

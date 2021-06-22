@@ -42,7 +42,9 @@ def find_grad(A, b, w):
 print(find_grad(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]})))
 
 
-
+# Task 9.4.10
+def gradient_descent_step(A, b, w, sigma):
+    return w - sigma * (find_grad(A, b, w))
 
 
 

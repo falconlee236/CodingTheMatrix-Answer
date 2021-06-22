@@ -47,10 +47,17 @@ def gradient_descent_step(A, b, w, sigma):
     return w - sigma * (find_grad(A, b, w))
 
 
+# Task 9.4.11
+def gradient_descent(A, b, w, sigma, T):
+    for i in range(T):
+        w = gradient_descent_step(A, b, w, sigma)
+        if i % 30 == 0:
+            print(loss(A, b, w))
+            print(fraction_wrong(A, b, w))
 
 
 
-
+print(gradient_descent(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]}), 0.1, 1000))
 
 
 

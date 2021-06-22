@@ -56,13 +56,19 @@ def gradient_descent(A, b, w, sigma, T):
             print(fraction_wrong(A, b, w))
 
 
+# Task 9.4.12
+print("Test case 1")
+print(gradient_descent(A, b, Vec(A.D[1], {x: 1 for x in A.D[1]}), 2e-9, 100))
+print("Test case 2")
+print(gradient_descent(A, b, Vec(A.D[1], {x: 1 for x in A.D[1]}), 1e-9, 100))
+print("Test case 3")
+print(gradient_descent(A, b, Vec(A.D[1], {x: 0 for x in A.D[1]}), 2e-9, 100))
+print("Test case 4")
+print(gradient_descent(A, b, Vec(A.D[1], {x: 0 for x in A.D[1]}), 1e-9, 10000))
 
-print(gradient_descent(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]}), 0.1, 1000))
-
-
-
-
-
+# Task 9.4.13
+A, b = read_training_data("validate.data")
+print(gradient_descent(A, b, Vec(A.D[1], {x: 0 for x in A.D[1]}), 1e-9, 10000))
 
 
 

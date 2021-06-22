@@ -12,15 +12,16 @@ def signum(u):
 
 
 print(signum(Vec({'A', 'B'}, {'A': 3, 'B': -2})))
-print(signum(Vec({1,2,3},{1:2, 2:-1})) == Vec({1,2,3},{1:1,2:-1,3:1}))
+print(signum(Vec({1, 2, 3}, {1: 2, 2: -1})) == Vec({1, 2, 3}, {1: 1, 2: -1, 3: 1}))
+
 
 # Task 9.4.3
 def fraction_wrong(A, b, w):
     m = signum(A * w)
-    l = len(m.D)
+    length = len(m.D)
     k = m * b
-    return (l - k) / (2 * l)
-    
+    return (length - k) / (2 * length)
+
 
 print(fraction_wrong(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]})))
 
@@ -33,11 +34,12 @@ def loss(A, b, w):
 print(loss(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]})))
 
 
+# Task 9.4.9
+def find_grad(A, b, w):
+    return 2 * (A * w - b) * A
 
 
-
-
-
+print(find_grad(A, b, Vec(A.D[1], {x: -1 for x in A.D[1]})))
 
 
 

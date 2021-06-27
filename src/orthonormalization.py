@@ -1,4 +1,8 @@
 # Copyright 2013 Philip N. Klein
+from math import sqrt
+from orthogonalization import orthogonalize
+
+
 def orthonormalize(L):
     '''
     Input: a list L of linearly independent Vecs
@@ -23,7 +27,7 @@ def orthonormalize(L):
     --------------------------
     -0.653 0.528 -0.512 0.181
     '''
-    pass
+    return [x/(sqrt(x * x)) for x in orthogonalize(L)]
 
 
 def aug_orthonormalize(L):

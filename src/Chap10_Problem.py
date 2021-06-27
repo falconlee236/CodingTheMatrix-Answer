@@ -1,20 +1,21 @@
 from vecutil import list2vec
-from matutil import coldict2mat, mat2rowdict
+from matutil import coldict2mat, mat2rowdict, listlist2mat
 from orthonormalization import orthonormalize, aug_orthonormalize
 from triangular import triangular_solve
 from mat import Mat
 from vec import Vec
+from read_data import read_vectors
 import QR
 
 
-print("# Problem 10.11.9")
+print("\n# Problem 10.11.9")
 # Problem 10.11.9
 L = list(map(list2vec, [[4, 3, 1, 2], [8, 9, -5, -5], [10, 1, -1, 5]]))
 for x in orthonormalize(L):
     print(x)
 
 
-print("# Problem 10.11.10")
+print("\n# Problem 10.11.10")
 # Problem 10.11.10
 L = list(map(list2vec, [[4, 3, 1, 2], [8, 9, -5, -5], [10, 1, -1, 5]]))
 print(coldict2mat(L))
@@ -26,7 +27,7 @@ print(coldict2mat(Qlist) * coldict2mat(Rlist))
 print(coldict2mat(Qlist) * coldict2mat(Rlist) - coldict2mat(L))
 
 
-print("# Problem 10.11.12")
+print("\n# Problem 10.11.12")
 # Problem 10.11.12
 
 
@@ -48,7 +49,12 @@ print(x)
 print(A.transpose() * (b - A*x))
 
 
-
+print("\n# Problem 10.11.15")
+# Problem 10.11.15
+vec_list = read_vectors('age-height.txt')
+A = listlist2mat([[1, vec['age']] for vec in vec_list])
+b = list2vec([vec['height'] for vec in vec_list])
+print(QR_solve(A, b))
 
 
 

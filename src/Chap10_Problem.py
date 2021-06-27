@@ -5,6 +5,7 @@ from triangular import triangular_solve
 from mat import Mat
 from vec import Vec
 from read_data import read_vectors
+from cancer_data import read_training_data
 import QR
 
 
@@ -57,5 +58,10 @@ b = list2vec([vec['height'] for vec in vec_list])
 print(QR_solve(A, b))
 
 
-
+print("\n# Problem 10.11.16\n")
+# Problem 10.11.16
+A, b = read_training_data("train.data")
+ans = QR_solve(A, b)
+for x in ans.D:
+    print(f'key = {x} value = {ans[x]}')
 

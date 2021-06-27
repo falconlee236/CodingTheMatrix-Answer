@@ -1,6 +1,7 @@
 # Copyright 2013 Philip N. Klein
 from math import sqrt
-from orthogonalization import orthogonalize
+from vec import Vec
+from orthogonalization import orthogonalize, aug_orthogonalize
 
 
 def orthonormalize(L):
@@ -28,6 +29,10 @@ def orthonormalize(L):
     -0.653 0.528 -0.512 0.181
     '''
     return [x/(sqrt(x * x)) for x in orthogonalize(L)]
+
+
+def adjust(v, multipliers):
+    return Vec(v.D, {key: multipliers[key] * v[key] for key in v.D})
 
 
 def aug_orthonormalize(L):
@@ -70,4 +75,6 @@ def aug_orthonormalize(L):
     c  |  1 -5 -1
     d  |  2 -5  5
     '''
-    pass
+    sub_Q, sub_R = aug_orthogonalize(L)
+    norms = [sqrt(x * x) for x in sub_Q]
+    return orthonormalize(L), [adjust(x, norms) for x in sub_R]

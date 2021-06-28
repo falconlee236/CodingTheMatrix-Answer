@@ -37,12 +37,15 @@ def forward(v):
 
 
 print(forward([1, 2, 3, 4]))
+print()
 
 
+# Task 11.9.4
+def suppress(D, threshold):
+    return {key: value if abs(value) >= threshold else 0 for key, value in D.items()}
 
 
-
-
+print(suppress(forward([1, 2, 3, 4]), 1))
 
 
 

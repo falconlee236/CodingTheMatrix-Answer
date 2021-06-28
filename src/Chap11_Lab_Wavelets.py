@@ -46,13 +46,17 @@ def suppress(D, threshold):
 
 
 print(suppress(forward([1, 2, 3, 4]), 1))
+print()
 
 
+# Task 11.9.5
+def sparsity(D):
+    return 1 - (list(D.values()).count(0)/len(D))
 
 
-
-
-
+D = forward([1, 2, 3, 4])
+print(sparsity(D))
+print(sparsity(suppress(D, 1)))
 
 
 

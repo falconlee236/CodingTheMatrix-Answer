@@ -57,13 +57,16 @@ def sparsity(D):
 D = forward([1, 2, 3, 4])
 print(sparsity(D))
 print(sparsity(suppress(D, 1)))
+print()
 
 
+# Task 11.9.6
+def unnormalize_coefficients(n, D):
+    return {key: value / sqrt(n/(4*key[0])) if key != (0, 0) else value / sqrt(n) for key, value in D.items()}
 
 
-
-
-
+print(D)
+print(unnormalize_coefficients(len(D), D))
 
 
 

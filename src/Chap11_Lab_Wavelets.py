@@ -28,12 +28,15 @@ def normalize_coefficients(n, D):
 
 print(normalize_coefficients(4, {(2, 0): 1, (2, 1): 1, (1, 0): 1, (0, 0): 1}))
 print(normalize_coefficients(4, forward_no_normalization([1, 2, 3, 4])))
+print()
 
 
+# Task 11.9.3
+def forward(v):
+    return normalize_coefficients(len(v), forward_no_normalization(v))
 
 
-
-
+print(forward([1, 2, 3, 4]))
 
 
 

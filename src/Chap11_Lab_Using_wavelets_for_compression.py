@@ -137,5 +137,38 @@ def suppress2d(D_dict, threshold):
 
 print(suppress2d(forward2d([[1, 2, 3, 4]]), 1))
 print(suppress2d(forward2d([[1, 2, 3, 4], [2, 3, 4, 3]]), 1))
+print()
+print("Task 11.9.11")
+
+
+# Task 11.9.11
+def sparsity2d(D_dict):
+    res = 0
+    for D in D_dict.values():
+        res += list(D.values()).count(0)
+    return 1 - (res/(len(D_dict) * len(D_dict[(0, 0)])))
+
+
+print(sparsity2d(suppress2d(forward2d([[1, 2, 3, 4]]), 1)))
+print(sparsity2d(suppress2d(forward2d([[1, 2, 3, 4], [2, 3, 4, 3]]), 1)))
+print()
+print("Task 11.9.12")
+
+
+# Task 11.9.12
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -156,10 +156,11 @@ print("Task 11.9.12")
 
 
 # Task 11.9.12
+def listdict2dict(L_dict, i):
+    return {key: value[i] for key, value in L_dict.items()}
 
 
-
-
+# Task 11.9.13
 
 
 

@@ -1,6 +1,10 @@
 from math import sqrt
 
 
+def dictlist_helper(dlist, k):
+    return [d[k] for d in dlist]
+
+
 print("Task 11.9.1")
 
 
@@ -108,10 +112,20 @@ D = forward([1, 2, 3, 4])
 print(backward(D))
 D = forward([4, 5, 3, 7, 4, 5, 2, 3, 9, 7, 3, 5, 0, 0, 0, 0])
 print(backward(D))
+print()
+print("Task 11.9.9")
 
 
+# Task 11.9.9
+def forward2d(vlist):
+    D_list = [forward(v) for v in vlist]
+    L_dict = {key: dictlist_helper(D_list, key) for key in D_list[0]}
+    D_dict = {key: forward(value) for key, value in L_dict.items()}
+    return D_dict
 
 
+print(forward2d([[1, 2, 3, 4]]))
+print(forward2d([[1, 2, 3, 4], [2, 3, 4, 3]]))
 
 
 

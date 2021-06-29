@@ -126,10 +126,16 @@ def forward2d(vlist):
 
 print(forward2d([[1, 2, 3, 4]]))
 print(forward2d([[1, 2, 3, 4], [2, 3, 4, 3]]))
+print()
+print("Task 11.9.10")
 
 
+# Task 11.9.10
+def suppress2d(D_dict, threshold):
+    return {key: suppress(value, threshold) for key, value in D_dict.items()}
 
 
-
+print(suppress2d(forward2d([[1, 2, 3, 4]]), 1))
+print(suppress2d(forward2d([[1, 2, 3, 4], [2, 3, 4, 3]]), 1))
 
 

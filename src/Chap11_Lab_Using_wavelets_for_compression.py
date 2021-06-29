@@ -161,7 +161,8 @@ def listdict2dict(L_dict, i):
 
 
 # Task 11.9.13
-
+def listdict2dictlist(listdict):
+    return [listdict2dict(listdict, i) for i in range(len(listdict[(0, 0)]))]
 
 
 

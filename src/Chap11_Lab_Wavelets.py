@@ -95,9 +95,19 @@ D = forward([1, 2, 3, 4])
 print(backward_no_normalization(unnormalize_coefficients(len(D), D)))
 D = forward([4, 5, 3, 7, 4, 5, 2, 3, 9, 7, 3, 5, 0, 0, 0, 0])
 print(backward_no_normalization(unnormalize_coefficients(len(D), D)))
+print()
+print("Task 11.9.8")
 
 
+# Task 11.9.8
+def backward(D):
+    return backward_no_normalization(unnormalize_coefficients(len(D), D))
 
+
+D = forward([1, 2, 3, 4])
+print(backward(D))
+D = forward([4, 5, 3, 7, 4, 5, 2, 3, 9, 7, 3, 5, 0, 0, 0, 0])
+print(backward(D))
 
 
 

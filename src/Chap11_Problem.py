@@ -32,13 +32,18 @@ a = Vec({0, 1, 2}, {0: sqrt(2), 1: 1/sqrt(3), 2: 2/sqrt(6)})
 print(orthogonal_change_of_basis(A, B, a))
 
 
+print("\n# Problem 11.11.3")
+# Problem 11.11.3
 
 
+def orthonormal_projection_orthogonal(W, b):
+    return b - W * b * W
 
 
-
-
-
+W = Mat((set(range(2)), set(range(3))), {(0, 0): 1/sqrt(2), (0, 1): 1/sqrt(2),
+                                         (1, 0): 1/sqrt(3), (1, 1): -1/sqrt(3), (1, 2): 1/sqrt(3)})
+b = Vec({0, 1, 2}, {0: 10, 1: 20, 2: 30})
+print(orthonormal_projection_orthogonal(W, b))
 
 
 

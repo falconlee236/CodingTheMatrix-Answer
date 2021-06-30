@@ -1,4 +1,5 @@
 from math import sqrt
+from image import file2image, color2gray, image2display
 
 
 def dictlist_helper(dlist, k):
@@ -92,7 +93,7 @@ def backward_no_normalization(D):
         for i in range(len(v)):
             res.extend((v[i] + (D[(len(v), i)]/2), v[i] - (D[(len(v), i)]/2)))
         v = res
-    return list(map(int, v))
+    return [round(x, 4) for x in v]
 
 
 D = forward([1, 2, 3, 4])
@@ -152,7 +153,7 @@ def sparsity2d(D_dict):
 print(sparsity2d(suppress2d(forward2d([[1, 2, 3, 4]]), 1)))
 print(sparsity2d(suppress2d(forward2d([[1, 2, 3, 4], [2, 3, 4, 3]]), 1)))
 print()
-print("Task 11.9.12")
+print("Task 11.9.14")
 
 
 # Task 11.9.12
@@ -165,6 +166,36 @@ def listdict2dictlist(listdict):
     return [listdict2dict(listdict, i) for i in range(len(listdict[(0, 0)]))]
 
 
+# Task 11.9.14
+def backward2d(dictdict):
+    listdict = {key: backward(value) for key, value in dictdict.items()}
+    dictlist = listdict2dictlist(listdict)
+    return [backward(x) for x in dictlist]
+
+
+print(backward2d(forward2d([[1, 2, 3, 4]])))
+print(backward2d(forward2d([[1, 2, 3, 4], [2, 3, 4, 3]])))
+print()
+print("# Task 11.9.17")
+
+
+# Task 11.9.16
+def image_round(image):
+    return [[abs(round(x)) if abs(round(x)) <= 255 else 255 for x in v] for v in image]
+
+
+# Task 11.9.17
+img_list = color2gray(file2image("Dali.png"))
+f_img = forward2d(img_list)
+b_img = backward2d(f_img)
+round_img = image_round(img_list)
+print()
+print("# Task 11.9.18")
+
+
+# Task 11.9.18
+sup_img = suppress2d(f_img, 1000)
+image2display(image_round(backward2d(sup_img)))
 
 
 

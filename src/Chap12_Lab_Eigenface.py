@@ -71,11 +71,24 @@ print(distance_squared(test_x, test_M))
 
 
 # Task 12.6.7
-distance_list = [distance_squared(x, M) for x in mat2rowdict(A).values()]
-print(distance_list)
+distance_list = {x: distance_squared(y, M) for x, y in mat2rowdict(A).items()}
+print("Task 12.6.7")
+for x in distance_list:
+    print(f"num = {x}  | ", end="")
+    print(format(distance_list[x], ','))
 
 
-
+# Task 12.6.8
+unclass_img = load_images("../img/unclassified", n=11)
+center_unclass_img = make_centeringVec(unclass_img)
+D = [(x, y) for x in range(166) for y in range(189)]
+center_vec = {key: Vec(set(D), {x: value[x[1]][x[0]] for x in D}) for key, value in center_unclass_img.items()}
+A = rowdict2mat(center_vec)
+distance_list = {x: distance_squared(y, M) for x, y in mat2rowdict(A).items()}
+print("Task 12.6.8")
+for x in distance_list:
+    print(f"num = {x}  | ", end="")
+    print(format(distance_list[x], ','))
 
 
 

@@ -1,11 +1,11 @@
 from eigenfaces import load_images, test_M, test_x
 from image import image2display
-from matutil import rowdict2mat, mat2coldict, coldict2mat
+from matutil import rowdict2mat, mat2coldict, coldict2mat, mat2rowdict
 from svd import factor
 from vec import Vec
 import copy
 
-'''
+
 # Task 12.6.1
 faces_img = load_images("../img/faces")
 
@@ -40,7 +40,7 @@ A = rowdict2mat(center_vec)
 u, w, v = factor(A)
 sub_m = mat2coldict(v)
 M = coldict2mat({i: sub_m[i] for i in range(10)})
-'''
+
 
 # Task 12.6.4
 def projected_representation(x, M):
@@ -70,7 +70,9 @@ print("Task 12.6.6")
 print(distance_squared(test_x, test_M))
 
 
-
+# Task 12.6.7
+distance_list = [distance_squared(x, M) for x in mat2rowdict(A).values()]
+print(distance_list)
 
 
 

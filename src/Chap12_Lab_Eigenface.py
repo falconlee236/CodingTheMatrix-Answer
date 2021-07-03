@@ -57,13 +57,17 @@ def projection_length_squared(x, M):
     return n * n
 
 
+print("Task 12.6.5")
 print(projection_length_squared(test_x, test_M))
 
 
+# Task 12.6.6
+def distance_squared(x, M):
+    return x * x - projection_length_squared(x, M)
 
 
-
-
+print("Task 12.6.6")
+print(distance_squared(test_x, test_M))
 
 
 

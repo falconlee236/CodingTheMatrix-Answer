@@ -1,4 +1,4 @@
-from eigenfaces import load_images
+from eigenfaces import load_images, test_M, test_x
 from image import image2display
 from matutil import rowdict2mat, mat2coldict, coldict2mat
 from svd import factor
@@ -42,10 +42,12 @@ sub_m = mat2coldict(v)
 M = coldict2mat({i: sub_m[i] for i in range(10)})
 
 
+# Task 12.6.4
+def projected_representation(x, M):
+    return M.transpose() * x
 
 
-
-
+print(projected_representation(test_x, test_M))
 
 
 

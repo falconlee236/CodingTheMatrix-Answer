@@ -123,7 +123,3 @@ original_project = face_project(B, center_unclass)
 for x in range(len(original_project)):
     image2display(original_project[x])
 
-
-
-
-

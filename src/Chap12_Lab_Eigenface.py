@@ -91,7 +91,9 @@ for x in distance_list:
     print(format(distance_list[x], ','))
 
 
-
+# Task 12.6.10
+def project(x, M):
+    return M * projected_representation(x, M)
 
 
 

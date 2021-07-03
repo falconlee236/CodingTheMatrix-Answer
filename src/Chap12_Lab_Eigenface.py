@@ -5,7 +5,7 @@ from svd import factor
 from vec import Vec
 import copy
 
-
+'''
 # Task 12.6.1
 faces_img = load_images("../img/faces")
 
@@ -40,20 +40,24 @@ A = rowdict2mat(center_vec)
 u, w, v = factor(A)
 sub_m = mat2coldict(v)
 M = coldict2mat({i: sub_m[i] for i in range(10)})
-
+'''
 
 # Task 12.6.4
 def projected_representation(x, M):
     return M.transpose() * x
 
 
+print("Task 12.6.4")
 print(projected_representation(test_x, test_M))
 
 
+# Task 12.6.5
+def projection_length_squared(x, M):
+    n = M * projected_representation(x, M)
+    return n * n
 
 
-
-
+print(projection_length_squared(test_x, test_M))
 
 
 

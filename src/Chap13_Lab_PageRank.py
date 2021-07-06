@@ -53,7 +53,7 @@ def wikigoogle(w, k, p):
 
 # Task 13.12.6
 make_Markov(links)
-eigenvec = power_method(links, 5)
+eigenvec = power_method(links, 2)
 jordanlist = wikigoogle("jordan", 10, eigenvec)
 
 
@@ -72,16 +72,25 @@ def power_method_biased(A1, k, r):
     return v
 
 
-sport_biased_eigenvec = power_method_biased(links, 5, "sport")
+sport_biased_eigenvec = power_method_biased(links, 2, "sport")
 sport_biased_jordanlist = wikigoogle("jordan", 10, sport_biased_eigenvec)
 print(jordanlist)
 print(sport_biased_jordanlist)
 
 
+# Task 13.12.8
 
 
+def wikigoogle2(words, k, p):
+    wordlist = [set(find_word(x)) for x in words]
+    related = wordlist[0]
+    for i in range(1, len(wordlist)):
+        related = related.intersection(wordlist[i])
+    related.sort(key=lambda x: p[x], reverse=True)
+    return related[:k]
 
 
+print(wikigoogle2(["jordan, tiger"], 10, sport_biased_eigenvec))
 
 
 

@@ -1,21 +1,17 @@
 from pagerank_test import small_links, A2
+from pagerank import find_word, read_data
 from vec import Vec
 from math import sqrt
 
 
 # Task 13.12.1
-print("# Task 13.12.1")
 
 
 def find_num_links(L):
     return Vec(L.D[0], {key: 1 for key in L.D[0]}) * L
 
 
-print(find_num_links(small_links))
-
-
 # Task 13.12.2
-print(" # Task 13.12.2")
 
 
 def make_Markov(L):
@@ -24,13 +20,8 @@ def make_Markov(L):
         L[i] /= num_links[i[1]]
 
 
-print(small_links)
 make_Markov(small_links)
-print(small_links)
-
-
 # Task 13.12.3
-print(" # Task 13.12.3")
 
 
 def power_method(A1, k):
@@ -43,18 +34,13 @@ def power_method(A1, k):
 
 
 A = 0.85 * small_links + 0.15 * A2
-eigenvec = power_method(A, 1000)
-print(A)
-print(eigenvec)
-print(0.219 / 0.0705)
-print(0.243 / 0.0783)
-print(0.219 / 0.0705)
-print(1.62 / 0.5222)
+eigenvec = power_method(A, 10)
 
 
-
-
-
+# Task 13.12.4
+links = read_data("links.bin")
+print(len(find_word("jordan")))
+print(find_word("jordan"))
 
 
 

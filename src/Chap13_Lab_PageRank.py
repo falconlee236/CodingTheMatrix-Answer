@@ -1,6 +1,7 @@
 from pagerank_test import small_links, A2
 from pagerank import find_word, read_data
 from vec import Vec
+from mat import Mat
 from math import sqrt
 
 
@@ -26,15 +27,15 @@ make_Markov(small_links)
 
 def power_method(A1, k):
     v = Vec(A1.D[1], {key: 1 for key in A1.D[1]})
+    col_len = len(A1.D[1])
     for i in range(k):
-        u = A1*v
+        sub_v = 0.15 * v
+        sum_v = sum(sub_v.f.values())
+        A2_vec = Vec(sub_v.D, {key: sum_v / col_len for key in sub_v.D})
+        u = 0.85 * A1 * v + A2_vec
         print(sqrt((v * v) / (u * u)))
         v = u
     return v
-
-
-A = 0.85 * small_links + 0.15 * A2
-eigenvec = power_method(A, 10)
 
 
 # Task 13.12.4
@@ -53,15 +54,28 @@ def wikigoogle(w, k, p):
 # Task 13.12.6
 make_Markov(links)
 eigenvec = power_method(links, 5)
-print(wikigoogle("jordan", 10, eigenvec))
+jordanlist = wikigoogle("jordan", 10, eigenvec)
 
 
+# Task 13.12.7
+def power_method_biased(A1, k, r):
+    v = Vec(A1.D[1], {key: 1 for key in A1.D[1]})
+    col_len = len(A1.D[1])
+    for i in range(k):
+        sub_v = 0.15 * v
+        sum_v = sum(sub_v.f.values())
+        Ar = 0.3 * Vec(A1.D[0], {r: sum(v.f.values())})
+        A2_vec = Vec(sub_v.D, {key: sum_v / col_len for key in sub_v.D})
+        u = 0.55 * A1 * v + A2_vec + Ar
+        print(sqrt((v * v) / (u * u)))
+        v = u
+    return v
 
 
-
-
-
-
+sport_biased_eigenvec = power_method_biased(links, 5, "sport")
+sport_biased_jordanlist = wikigoogle("jordan", 10, sport_biased_eigenvec)
+print(jordanlist)
+print(sport_biased_jordanlist)
 
 
 

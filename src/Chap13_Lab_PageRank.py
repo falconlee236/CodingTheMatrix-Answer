@@ -50,7 +50,10 @@ def wikigoogle(w, k, p):
     return related[:k]
 
 
-
+# Task 13.12.6
+make_Markov(links)
+eigenvec = power_method(links, 5)
+print(wikigoogle("jordan", 10, eigenvec))
 
 
 

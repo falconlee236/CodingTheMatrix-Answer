@@ -42,7 +42,14 @@ def power_method(A1, k):
     return v
 
 
-print(power_method(A2, 100))
+A = 0.85 * small_links + 0.15 * A2
+eigenvec = power_method(A, 1000)
+print(A)
+print(eigenvec)
+print(0.219 / 0.0705)
+print(0.243 / 0.0783)
+print(0.219 / 0.0705)
+print(1.62 / 0.5222)
 
 
 

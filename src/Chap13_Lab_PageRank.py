@@ -39,11 +39,15 @@ eigenvec = power_method(A, 10)
 
 # Task 13.12.4
 links = read_data("links.bin")
-print(len(find_word("jordan")))
-print(find_word("jordan"))
 
 
+# Task 13.12.5
 
+
+def wikigoogle(w, k, p):
+    related = find_word(w)
+    related.sort(key=lambda x: p[x], reverse=True)
+    return related[:k]
 
 
 

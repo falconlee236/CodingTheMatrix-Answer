@@ -3,7 +3,7 @@ from vec import Vec
 
 
 # Task 9.4.1
-A, b = read_training_data("train.data")
+A, b = read_training_data("../src/data/train.data")
 
 
 # Task 9.4.2
@@ -67,7 +67,7 @@ print("Test case 4")
 print(gradient_descent(A, b, Vec(A.D[1], {x: 0 for x in A.D[1]}), 1e-9, 10000))
 
 # Task 9.4.13
-A, b = read_training_data("validate.data")
+A, b = read_training_data("../src/data/validate.data")
 print(gradient_descent(A, b, Vec(A.D[1], {x: 0 for x in A.D[1]}), 1e-9, 10000))
 
 

@@ -1,6 +1,7 @@
 from cancer_data import read_training_data
 from matutil import rowdict2mat, mat2rowdict
 from vec import Vec
+import simplex
 
 
 features = {'area(worst)', 'smoothness(worst)', 'texture(mean)'}

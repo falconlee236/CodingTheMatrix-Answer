@@ -40,7 +40,12 @@ def make_b(A):
     return Vec(A.D[0], {key: 1 if key > 0 else 0 for key in A.D[0]})
 
 
+print("Task 14.13.4")
+# Task 14.13.4
 
+
+def make_c(A, features):
+    return Vec(A.D[1], {key: 1 for key in A.D[1] if key not in {'gamma'} | features})
 
 
 

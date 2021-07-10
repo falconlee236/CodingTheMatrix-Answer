@@ -48,8 +48,10 @@ def make_c(A, features):
     return Vec(A.D[1], {key: 1 for key in A.D[1] if key not in {'gamma'} | features})
 
 
-
-
+print("Task 14.13.5")
+# Task 14.13.5
+b = make_b(A)
+c = make_c(A, features)
 
 
 

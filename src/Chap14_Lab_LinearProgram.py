@@ -17,11 +17,6 @@ def main_constraint(i, a_i, d_i, features):
 
 
 # 861799
-a_i = mat2rowdict(A)[861799]
-b_i = b[861799]
-print(main_constraint(861799, a_i, b_i, features))
-
-
 print("Task 14.13.2")
 # Task 14.13.2
 
@@ -37,8 +32,12 @@ def make_matrix(feature_vectors, diagnoses, features):
 A = make_matrix(mat2rowdict(A), b, features)
 
 
+print("Task 14.13.3")
+# Task 14.13.3
 
 
+def make_b(A):
+    return Vec(A.D[0], {key: 1 if key > 0 else 0 for key in A.D[0]})
 
 
 
